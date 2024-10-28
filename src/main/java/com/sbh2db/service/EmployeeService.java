@@ -1,5 +1,8 @@
 package com.sbh2db.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +19,17 @@ public class EmployeeService {
 		employeeRepository.save(employee);
 	}
 	
-	public void getEmployee(long empId) {
-		employeeRepository.findById(empId);
-		
+	public Employee getEmployee(long empId) {
+		Optional<Employee> opt = employeeRepository.findById(empId);
+		return opt.get();
+	}
+
+	public List<Employee> getAllEmployee() {
+		 return  employeeRepository.findAll();
+	}
+
+	public Employee deleteEmployee(Long empId) {
+		employeeRepository.deleteById(empId);
+		return null;
 	}
 }
